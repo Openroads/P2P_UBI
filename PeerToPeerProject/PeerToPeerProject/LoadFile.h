@@ -1,3 +1,3 @@
 #pragma once
 
-void GetFile(char *filename);
+struct MyFile GetHeader(char *filename);
