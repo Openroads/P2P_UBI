@@ -8,15 +8,7 @@
 #include "LoadFile.h"
 
 
-struct MyFile 
-{
-	int Users;
-	int Files;
-	int Transactions;
-};
-
-
-struct MyFile GetHeader(char *filename)
+struct MyFile getHeader(char *filename)
 {
 	struct MyFile myFile;
 	FILE *plik;
@@ -47,5 +39,17 @@ struct MyFile GetHeader(char *filename)
 	}
 
 	return myFile;
+
+}
+int * getUserFile(char *filename,struct MyFile header)
+{
+	int startLine = 17+header.Users+1;
+	FILE *f;
+	f = fopen(filename, "r");
+
+	//while(fgets())
+
+
+	fclose(f);
 
 }
