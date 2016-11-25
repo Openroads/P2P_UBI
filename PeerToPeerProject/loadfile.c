@@ -42,14 +42,57 @@ struct MyFile getHeader(char *filename)
 
 }
 int * getUserFile(char *filename,struct MyFile header)
-{
+{	
 	int startLine = 17+header.Users+1;
 	FILE *f;
 	f = fopen(filename, "r");
+	char buff[100];
+	int n =100;
 
-	//while(fgets())
+	int arraySize =countFileCopies(filename,startLine);
+	printf("%d \n",arraySize );
+	int *readArray = malloc(sizeof(int)*arraySize);
+
+	int counter =0;
+	while(counter<startLine)
+	{
+		fgets(buff,n,f);
+		counter++;
+	}
+
+	do
+	{
+
+	}while(buff[0] != '\n');
+	
 
 
 	fclose(f);
 
+}
+int countFileCopies(char *filename,int startLine)
+{
+	FILE *file;
+	file = fopen(filename, "r");
+	char buff[100];
+	int amount =0;
+	int counter=0;
+	int n=100;
+
+	while(counter < startLine)
+	{
+		fgets(buff,n,file);
+		counter++;
+	}
+
+	do{
+
+		fgets(buff,n,file);
+		amount++;
+
+	}while(buff[0] != '\n');
+
+	fclose(file);
+	return amount-1;
+	
 }
