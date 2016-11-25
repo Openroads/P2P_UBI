@@ -1,12 +1,13 @@
 #include <stdio.h>
+#include "LoadFile.h"
+
 
 int main()
 {
 	double s;
-	printf("Jedziemy z tym\n");
-
+	GetFile("Dupa.txt");
 
 	scanf_s("lf", &s);
 
-	return 0;
+
 }

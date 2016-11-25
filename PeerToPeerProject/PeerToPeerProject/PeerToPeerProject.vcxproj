@@ -146,7 +146,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LoadFile.cpp" />
     <ClCompile Include="Main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\Documents\ProgrammingC\project-assignment\test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="LoadFile.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Dupa.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
