@@ -20,13 +20,7 @@ struct MyFile GetHeader(char *filename)
 {
 	MyFile myFile;
 	FILE *plik;
-	errno_t err;
 	plik = fopen(filename, "r");
-
-	char a[100];
-	int b;
-
-
 	char buff[255];
 
 	int i = 0;
@@ -35,19 +29,17 @@ struct MyFile GetHeader(char *filename)
 		if (i == 0)
 		{
 			myFile.Users = atoi(buff);
-			printf("%d\n", myFile.Users);
 		}
 
 		if (i == 2)
 		{
 			myFile.Files = atoi(buff);
-			printf("%d\n", myFile.Files);
 		}
 		
 		if (i == 4)
 		{
 			myFile.Transactions = atoi(buff);
-			printf("%d\n", myFile.Transactions);
+			break;
 		}
 		
 		i = i + 1;
