@@ -11,11 +11,11 @@ struct MyFile
 
 int main()
 {
-	MyFile myHeader;
+	struct MyFile myHeader;
 	double s;
 	myHeader = GetHeader("Dupa.txt");
-
-	scanf_s("lf", &s);
+	printf("%d\n", myHeader.Users);
+	
 
 
 }

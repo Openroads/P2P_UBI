@@ -18,13 +18,13 @@ struct MyFile
 
 struct MyFile GetHeader(char *filename)
 {
-	MyFile myFile;
+	struct MyFile myFile;
 	FILE *plik;
 	plik = fopen(filename, "r");
 	char buff[255];
 
 	int i = 0;
-	while(fscanf(plik, "%s", &buff) != EOF)
+	while(fscanf(plik, "%s", buff) != EOF)
 	{
 		if (i == 0)
 		{
