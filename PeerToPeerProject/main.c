@@ -38,8 +38,8 @@ int main()
 	printf("User1-User2 connections array\n");
 	for (i = 0; i < connectionArraySize; ++i)
 	{
-		if(i%2==0) printf("User: %d connected with ", userConnectionArray[i] );
-		else printf("user: %d \n",userConnectionArray[i] );
+		if(i%2==0) printf("User: %d wants file:", userConnectionArray[i] );
+		else printf(" %d \n",userConnectionArray[i] );
 	}
 	/* Making matric UsersxUsers*/
 	int adjancencyMatrixSize = myHeader.Users;
@@ -53,7 +53,7 @@ int main()
 	}
 	resetMatrix(adjacencyMatrix,adjancencyMatrixSize);
 	//showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
-	makeAdjacencyMatrix(adjacencyMatrix,userConnectionArray,userFileArray,userFileArraySize,connectionArraySize,adjancencyMatrixSize);
+	makeAdjacencyMatrix(adjacencyMatrix,userConnectionArray,userFileArray,adjancencyMatrixSize,userFileArraySize,connectionArraySize);
 	showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
 }
 
@@ -68,11 +68,14 @@ void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,
 	for(a=0 ; a < border; a+=2)
 	{
 		user = connectionArray[a];  file = connectionArray[a+1];
+		printf("file: %d  ", file );
 		for(i=1; i < userFileSize; i+=2)
 		{
 			if(fileArray[i] == file)
 			{
+
 				j = fileArray[i-1];
+				printf("is with user:%d \n",j);
 				k = user;
 				matrixArray[j][k] = 1;
 				matrixArray[k][j] = 1;
@@ -96,11 +99,11 @@ void resetMatrix(int **matrix,int size)
 void showAdjacencyMatrix(int **matrix,int size)
 {
 	int i=0; int j =0;
-	/*for(i=0; i<size-1;++i)
+	for(i=0; i<size;++i)
 	{
 		printf("%d ",i );
 	}
-	printf("\n");*/
+	printf("\n");
 	for(i=0; i < size; i++)
 	{
 		if(i<=9) printf("\n  %d  ",i);
