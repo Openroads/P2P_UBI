@@ -7,4 +7,6 @@ struct MyFile
 };
 struct MyFile getHeader(char *filename);
 
-void getUserFile(int *readArray, char *filename,struct MyFile header);
+void getUserFile(int *readArray, char *filename,int startLine);
+void getUserConnections(int *readArray,char *filename,int startLine,int endLine);
+int countLineAmount(char *filename,int startLine);

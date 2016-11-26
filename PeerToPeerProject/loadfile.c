@@ -41,9 +41,8 @@ struct MyFile getHeader(char *filename)
 	return myFile;
 
 }
-void getUserFile(int *readArray,char *filename,struct MyFile header)
+void getUserFile(int *readArray,char *filename,int startLine)
 {	
-	int startLine = 17+header.Users+1;
 	FILE *f;
 	f = fopen(filename, "r");
 	char buff[100];
@@ -95,11 +94,70 @@ void getUserFile(int *readArray,char *filename,struct MyFile header)
 		fgets(buff,n,f);
 
 	}
-	printf("%d\n",iterator );
+	
 	fclose(f);
 
 }
-int countFileCopies(char *filename,int startLine)
+
+void getUserConnections(int *readArray,char *filename,int startLine,int endLine)
+{	
+
+	FILE *f;
+	f = fopen(filename, "r");
+	char buff[100];
+	int n =100;
+	int iterator=0;
+	int counter =0;
+	while(counter<startLine)
+	{
+		fgets(buff,n,f);
+		counter++;
+	}
+	
+	int a =0;
+	int i =0;
+
+	char bu[6];
+	char bf[6];
+	int user1=0;
+	int user2=0;
+	//printf("%s",buff );
+
+	while(counter<endLine)
+	{	
+		counter++;
+		fgets(buff,n,f);
+
+		while(buff[i+1] != ',' )
+		{
+			bu[a] = buff[i+1];
+			i++;
+			a++;
+		}
+		bu[a]=' ';
+		i++;
+		a=0;
+		while(buff[i+1] != ')')
+		{
+			bf[a] = buff[i+1];
+			i++;
+			a++; 
+		}
+		bf[a]=' ';
+		i=0;
+		a=0;
+		
+		user1 = atoi(bu);
+		user2 = atoi(bf);
+		readArray[iterator++] = user1;
+		readArray[iterator++] = user2;
+	}
+
+	fclose(f);
+
+}
+
+int countLineAmount(char *filename,int startLine)
 {
 	FILE *file;
 	file = fopen(filename, "r");
