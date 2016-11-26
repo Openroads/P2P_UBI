@@ -52,9 +52,9 @@ int main()
 		}
 	}
 	resetMatrix(adjacencyMatrix,adjancencyMatrixSize);
-	showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
+	//showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
 	makeAdjacencyMatrix(adjacencyMatrix,userConnectionArray,userFileArray,userFileArraySize,connectionArraySize,adjancencyMatrixSize);
-
+	showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
 }
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int matrixSize,int userFileSize ,int connectionSize)
@@ -64,16 +64,20 @@ void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,
 	int border = connectionSize-1;
 	int user,file;
 	user=file=0;
-	for(a; a < border; a+=2)
+	
+	for(a=0 ; a < border; a+=2)
 	{
 		user = connectionArray[a];  file = connectionArray[a+1];
-
 		for(i=1; i < userFileSize; i+=2)
 		{
 			if(fileArray[i] == file)
+			{
+				j = fileArray[i-1];
+				k = user;
+				matrixArray[j][k] = 1;
+				matrixArray[k][j] = 1;
+			}
 		}
-
-
 	}
 
 }
@@ -92,12 +96,19 @@ void resetMatrix(int **matrix,int size)
 void showAdjacencyMatrix(int **matrix,int size)
 {
 	int i=0; int j =0;
-	for(i; i < size; i++)
+	/*for(i=0; i<size-1;++i)
 	{
+		printf("%d ",i );
+	}
+	printf("\n");*/
+	for(i=0; i < size; i++)
+	{
+		if(i<=9) printf("\n  %d  ",i);
+		else printf("\n %d  ",i);
 		for(j=0; j < size; j++)
 		{
 			printf("%d ",matrix[i][j]);
 		}
-		printf("\n");
+		
 	}
 }
