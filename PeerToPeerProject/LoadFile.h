@@ -7,4 +7,4 @@ struct MyFile
 };
 struct MyFile getHeader(char *filename);
 
-int * getUserFile(char *filename,struct MyFile header);
+void getUserFile(int *readArray, char *filename,struct MyFile header);

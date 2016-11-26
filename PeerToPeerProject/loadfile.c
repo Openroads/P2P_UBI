@@ -41,18 +41,14 @@ struct MyFile getHeader(char *filename)
 	return myFile;
 
 }
-int * getUserFile(char *filename,struct MyFile header)
+void getUserFile(int *readArray,char *filename,struct MyFile header)
 {	
 	int startLine = 17+header.Users+1;
 	FILE *f;
 	f = fopen(filename, "r");
 	char buff[100];
 	int n =100;
-
-	int arraySize =countFileCopies(filename,startLine);
-	printf("%d \n",arraySize );
-	int *readArray = malloc(sizeof(int)*arraySize);
-
+	int iterator=0;
 	int counter =0;
 	while(counter<startLine)
 	{
@@ -60,13 +56,46 @@ int * getUserFile(char *filename,struct MyFile header)
 		counter++;
 	}
 
-	do
-	{
+	int a =0;
+	int i =0;
 
-	}while(buff[0] != '\n');
-	
+	char bu[6];
+	char bf[6];
+	int user=0;
+	int file=0;
 
+	fgets(buff,n,f);
+	while(buff[0] == '(')
+	{	
+		
+		while(buff[i+1] != ',' )
+		{
+			bu[a] = buff[i+1];
+			i++;
+			a++;
+		}
+		bu[a]=' ';
+		i++;
+		a=0;
+		while(buff[i+1] != ',')
+		{
+			bf[a] = buff[i+1];
+			i++;
+			a++; 
+		}
+		bf[a]=' ';
+		i=0;
+		a=0;
+		
+		user = atoi(bu);
+		file = atoi(bf);
+		readArray[iterator++] = user;
+		readArray[iterator++] = file;
 
+		fgets(buff,n,f);
+
+	}
+	printf("%d\n",iterator );
 	fclose(f);
 
 }
