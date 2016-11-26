@@ -59,10 +59,20 @@ int main()
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int matrixSize,int userFileSize ,int connectionSize)
 {
-	int j, k ;
-	int a = j = k = 0;
-	for(a; a < connectionSize; a+=2)
+	int i,j, k ;
+	int a = i = j = k = 0;
+	int border = connectionSize-1;
+	int user,file;
+	user=file=0;
+	for(a; a < border; a+=2)
 	{
+		user = connectionArray[a];  file = connectionArray[a+1];
+
+		for(i=1; i < userFileSize; i+=2)
+		{
+			if(fileArray[i] == file)
+		}
+
 
 	}
 
