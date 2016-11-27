@@ -2,14 +2,7 @@
 #include <stdlib.h>
 #include "LoadFile.h"
 #include "Algorithms.h"
-#include <sys/queue.h>
-
-struct UserFile
-{
-	int user;
-	int *files;
-	int fileAmount;
-};
+//#include <sys/queue.h>
 
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int userFileSize ,int connectionSize,int matrixSize);

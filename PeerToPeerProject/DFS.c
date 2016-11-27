@@ -6,7 +6,7 @@
 
 int *visited;
 
-void visit(int v, int size, int **matrix)
+void visit(int v, int size, int **matrix, int file, UserFile *userFile)
 {
     visited[v] = 1;
     printf("%d ", v);
@@ -20,7 +20,7 @@ void visit(int v, int size, int **matrix)
 
 }
 
-void dfs(int **matrix, int size, int begin)
+void dfs(int **matrix, int size, int begin, int file,  UserFile *userFile)
 {
     visited = malloc(sizeof(int) * size);
     int i;
@@ -30,5 +30,5 @@ void dfs(int **matrix, int size, int begin)
         printf("Zeruje: %i\n", i);
     }
 
-    visit(begin, size, matrix); 
+    visit(begin, size, matrix, file, userFile); 
 }
