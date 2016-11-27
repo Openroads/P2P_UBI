@@ -1,17 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "Algorithms.h"
 
-typedef enum { false, true } bool;
+//typedef enum { false, true } bool;
 
-bool *visited;
+int *visited;
 
 void visit(int v, int size, int **matrix)
 {
-    visited[v] = true;
+    visited[v] = 1;
     printf("%d ", v);
 
     int i;
-    for(i = size; i >= 0; i--)
+    for(i = size - 1; i >= 0; i--)
     {
         if(matrix[v][i] && !visited[i])
             visit(i, size, matrix);
@@ -25,7 +26,8 @@ void dfs(int **matrix, int size, int begin)
     int i;
     for(i = 0; i < size; i++)
     {
-        visited[i] = false;
+        visited[i] = 0;
+        printf("Zeruje: %i\n", i);
     }
 
     visit(begin, size, matrix); 
