@@ -2,10 +2,21 @@
 #include <stdlib.h>
 #include "LoadFile.h"
 #include "Algorithms.h"
+#include <sys/queue.h>
+
+struct UserFile
+{
+	int user;
+	int *files;
+	int fileAmount;
+};
+
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int userFileSize ,int connectionSize,int matrixSize);
 void resetMatrix(int **matix,int size);
 void showAdjacencyMatrix(int **matrix,int size);
+void makeUserFileStruct(struct UserFile *array,int sizeS,int *userFileArray,int sizeUFA);
+
 
 int main()
 {
@@ -57,6 +68,19 @@ int main()
 	makeAdjacencyMatrix(adjacencyMatrix,userConnectionArray,userFileArray,adjancencyMatrixSize,userFileArraySize,connectionArraySize);
 	showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
 
+	struct UserFile *userFile = (struct UserFile*)malloc(sizeof(struct UserFile)*myHeader.Users);
+	makeUserFileStruct(userFile,myHeader.Users,userFileArray,userFileArraySize);
+	int j;
+	for(i=0 ; i < myHeader.Users;++i)
+	{
+		printf("%d -> ",userFile[i].user);
+		//printf("%d a",userFile[i].fileAmount );
+		for(j=0; j < userFile[i].fileAmount; ++j)
+			{
+				printf("%d, ",userFile[i].files[j]);
+			}
+		printf("\n");
+	}
 
 	//DFS
 	//dfs(adjacencyMatrix, adjancencyMatrixSize, 0);
@@ -74,14 +98,12 @@ void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,
 	for(a=0 ; a < border; a+=2)
 	{
 		user = connectionArray[a];  file = connectionArray[a+1];
-		printf("file: %d  ", file );
 		for(i=1; i < userFileSize; i+=2)
 		{
 			if(fileArray[i] == file)
 			{
 
 				j = fileArray[i-1];
-				printf("is with user:%d \n",j);
 				k = user;
 				matrixArray[j][k] = 1;
 				matrixArray[k][j] = 1;
@@ -118,6 +140,32 @@ void showAdjacencyMatrix(int **matrix,int size)
 		{
 			printf("%d ",matrix[i][j]);
 		}
-		
+	}
+	printf("\n");
+}
+void makeUserFileStruct(struct UserFile *array,int sizeS,int *userFileArray,int sizeUFA)
+{
+	int counter = 0;
+	int u,i,j;
+	for(u=0 ; u < sizeS;++u)
+	{
+		array[u].user = u;
+		for(i =0; i<sizeUFA-1; i+=2)
+		{
+			if(u == userFileArray[i]) counter++;
+
+		}
+		array[u].fileAmount = counter;
+		array[u].files = malloc( sizeof(int)*counter );
+		counter=0;
+		j=0;
+		for(i =0; i<sizeUFA; i+=2)
+		{
+			if(u == userFileArray[i])
+			{
+				array[u].files[j] = userFileArray[i+1];
+				j++;
+			}
+		}
 	}
 }
