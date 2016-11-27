@@ -20,21 +20,30 @@ void makeUserFileStruct(struct UserFile *array,int sizeS,int *userFileArray,int 
 
 int main()
 {
-	char fileName[10]  ="test.txt";
+	char fileName[10]  =  "test.txt";
+
 	struct MyFile myHeader;
 	myHeader = getHeader(fileName);
-	int startLineUserFile = 17+myHeader.Users+1;
-	int userFileLineAmount =countLineAmount(fileName,startLineUserFile);
-	int userFileArraySize = userFileLineAmount*2;
-	int *userFileArray = malloc( sizeof(int)*userFileArraySize);
+	/******************** Load data from file ****************************/
+	int startLineUserFile  		= 17+myHeader.Users+1;
+	int userFileLineAmount 		= countLineAmount(fileName,startLineUserFile);
+	int userFileArraySize  		= userFileLineAmount*2;
+	int *userFileArray     		= malloc( sizeof(int)*userFileArraySize);
 	getUserFile(userFileArray,fileName,startLineUserFile);
 
-	int startConnectionLine = startLineUserFile + userFileLineAmount + 1;
-	int connectionArraySize = myHeader.Transactions*2;
-	int *userConnectionArray = malloc(sizeof(int) * connectionArraySize);
-	int endConnectLine = startConnectionLine+myHeader.Transactions;
+	int startConnectionLine 	= startLineUserFile + userFileLineAmount + 1;
+	int connectionArraySize 	= myHeader.Transactions*2;
+	int *userConnectionArray 	= malloc(sizeof(int) * connectionArraySize);
+	int endConnectLine 			= startConnectionLine+myHeader.Transactions;
 	getUserConnections(userConnectionArray, fileName,startConnectionLine,startConnectionLine+myHeader.Transactions);
-	printf("%d \n",endConnectLine );
+	/************************************************************************/
+
+	/************ Making array with Users and files which user has **********/
+	struct UserFile *userFile = (struct UserFile*)malloc(sizeof(struct UserFile)*myHeader.Users);
+	makeUserFileStruct(userFile,myHeader.Users,userFileArray,userFileArraySize);
+	/************************************************************************/
+	
+	/******************* Print out data *************************************/
 	printf("Header: \n");
 	printf("Users: %d \n", myHeader.Users);
 	printf("Files: %d \n", myHeader.Files);
@@ -63,18 +72,14 @@ int main()
 			adjacencyMatrix[i] = (int *)malloc (sizeof(int)*adjancencyMatrixSize);
 		}
 	}
-	resetMatrix(adjacencyMatrix,adjancencyMatrixSize);
-	//showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
-	makeAdjacencyMatrix(adjacencyMatrix,userConnectionArray,userFileArray,adjancencyMatrixSize,userFileArraySize,connectionArraySize);
-	showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
-
-	struct UserFile *userFile = (struct UserFile*)malloc(sizeof(struct UserFile)*myHeader.Users);
-	makeUserFileStruct(userFile,myHeader.Users,userFileArray,userFileArraySize);
+	/*********************************************************************/
+	
+	/************* Print files which each user has **********************/
+	printf("\nUser  -> files\n");
 	int j;
 	for(i=0 ; i < myHeader.Users;++i)
 	{
 		printf("%d -> ",userFile[i].user);
-		//printf("%d a",userFile[i].fileAmount );
 		for(j=0; j < userFile[i].fileAmount; ++j)
 			{
 				printf("%d, ",userFile[i].files[j]);
@@ -82,6 +87,12 @@ int main()
 		printf("\n");
 	}
 
+
+	/**************Making and printing adjacency Matrix between users ****/
+	resetMatrix(adjacencyMatrix,adjancencyMatrixSize);
+	makeAdjacencyMatrix(adjacencyMatrix,userConnectionArray,userFileArray,adjancencyMatrixSize,userFileArraySize,connectionArraySize);
+	showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
+		/************          Algorithm             **********************/
 	//DFS
 	//dfs(adjacencyMatrix, adjancencyMatrixSize, 0);
 
@@ -127,10 +138,6 @@ void resetMatrix(int **matrix,int size)
 void showAdjacencyMatrix(int **matrix,int size)
 {
 	int i=0; int j =0;
-	for(i=0; i<size;++i)
-	{
-		printf("%d ",i );
-	}
 	printf("\n");
 	for(i=0; i < size; i++)
 	{
