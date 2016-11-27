@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "LoadFile.h"
+#include "Algorithms.h"
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int userFileSize ,int connectionSize,int matrixSize);
 void resetMatrix(int **matix,int size);
@@ -55,6 +56,11 @@ int main()
 	//showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
 	makeAdjacencyMatrix(adjacencyMatrix,userConnectionArray,userFileArray,adjancencyMatrixSize,userFileArraySize,connectionArraySize);
 	showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
+
+
+	//DFS
+	//dfs(adjacencyMatrix, adjancencyMatrixSize, 0);
+
 }
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int matrixSize,int userFileSize ,int connectionSize)
