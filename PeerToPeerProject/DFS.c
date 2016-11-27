@@ -9,6 +9,7 @@ int *visited;
 void visit(int v, int size, int **matrix, int file, UserFile *userFile)
 {
     visited[v] = 1;
+    
     printf("%d ", v);
 
     int i;
