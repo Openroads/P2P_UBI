@@ -25,8 +25,6 @@ int visit(int v, int size, int **matrix, int file, struct UserFile *userFile, in
         }
     } 
 
-    
-
     int i;
     for(i = size - 1; i >= 0; i--)
     {
