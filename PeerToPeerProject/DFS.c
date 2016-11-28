@@ -35,8 +35,6 @@ int visit(int v, int size, int **matrix, int file, struct UserFile *userFile, in
             
     }
 
-    //return 0;
-
 }
 
 int dfs(int **matrix, int size, int begin, int file,  struct UserFile *userFile)

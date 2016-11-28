@@ -113,6 +113,7 @@ int main()
 	free(adjacencyMatrix);
 
 	return 0;
+
 }
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int matrixSize,int userFileSize ,int connectionSize)
