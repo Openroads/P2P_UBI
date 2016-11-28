@@ -6,22 +6,44 @@
 
 int *visited;
 
-void visit(int v, int size, int **matrix, int file, UserFile *userFile)
+int visit(int v, int size, int **matrix, int file, struct UserFile *userFile, int counter)
 {
     visited[v] = 1;
-    
     printf("%d ", v);
+    int k;
+    for(k = 0; k < size; k++)
+    {
+        if(userFile[k].user == v)
+        {
+            int j;
+            for(j = 0; j < userFile[k].fileAmount; j++)
+            {
+                if(userFile[k].files[j] == file)
+                {
+                    printf("Znalazlem: V: %d -> %d ",v,  userFile[k].files[j]);
+                    return counter;
+                }
+            }
+        }
+    } 
+
+    
 
     int i;
     for(i = size - 1; i >= 0; i--)
     {
         if(matrix[v][i] && !visited[i])
-            visit(i, size, matrix);
+        {
+            return visit(i, size, matrix, file, userFile, counter + 1);
+        }
+            
     }
+
+    //return 0;
 
 }
 
-void dfs(int **matrix, int size, int begin, int file,  UserFile *userFile)
+int dfs(int **matrix, int size, int begin, int file,  struct UserFile *userFile)
 {
     visited = malloc(sizeof(int) * size);
     int i;
@@ -31,5 +53,5 @@ void dfs(int **matrix, int size, int begin, int file,  UserFile *userFile)
         printf("Zeruje: %i\n", i);
     }
 
-    visit(begin, size, matrix, file, userFile); 
+    return visit(begin, size, matrix, file, userFile, 1)); 
 }

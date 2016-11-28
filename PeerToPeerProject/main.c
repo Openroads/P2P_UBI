@@ -86,11 +86,15 @@ int main()
 	makeAdjacencyMatrix(adjacencyMatrix,userConnectionArray,userFileArray,adjancencyMatrixSize,userFileArraySize,connectionArraySize);
 	showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
 	/****************          Algorithms             **********************/
-	//DFS
-	//dfs(adjacencyMatrix, adjancencyMatrixSize, 0);
+	
 	/********          BFS           **********/
 	int bfsPathLength = bfs(adjacencyMatrix,myHeader.Users,5,36,userFile);
 	printf("BFS path length: %d \n",bfsPathLength);
+
+	/********          DFS           **********/
+	int dfsPathLength = dfs(adjacencyMatrix, adjancencyMatrixSize, 5, 36, userFile
+	print("DFS: %d", dfsPathLength);
+
 
 }
 

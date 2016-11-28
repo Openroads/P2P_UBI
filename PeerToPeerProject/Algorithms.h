@@ -6,5 +6,7 @@ struct UserFile
 	int fileAmount;
 };
 
-void dfs(int **matrix, int size, int begin, int file, struct UserFile *userFile);
-int bfs(int **matrix, int size, int user, int file, struct UserFile *userFile);
+
+int dfs(int **matrix, int size, int begin, int file, struct UserFile *userFile);
+void bfs(int **matrix, int size, int user, int file);
+
