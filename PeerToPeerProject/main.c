@@ -55,7 +55,7 @@ int main()
 		if(i%2==0) printf("User: %d wants file:", userConnectionArray[i] );
 		else printf(" %d \n",userConnectionArray[i] );
 	}
-	/* Making matric UsersxUsers*/
+	/* Making matrix UsersxUsers*/
 	int adjancencyMatrixSize = myHeader.Users;
 	int **adjacencyMatrix = (int**)malloc(sizeof(int*) * adjancencyMatrixSize);
 	if(adjacencyMatrix)
@@ -85,9 +85,12 @@ int main()
 	resetMatrix(adjacencyMatrix,adjancencyMatrixSize);
 	makeAdjacencyMatrix(adjacencyMatrix,userConnectionArray,userFileArray,adjancencyMatrixSize,userFileArraySize,connectionArraySize);
 	showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
-		/************          Algorithm             **********************/
+	/****************          Algorithms             **********************/
 	//DFS
 	//dfs(adjacencyMatrix, adjancencyMatrixSize, 0);
+	/********          BFS           **********/
+	int bfsPathLength = bfs(adjacencyMatrix,myHeader.Users,5,36,userFile);
+	printf("BFS path length: %d \n",bfsPathLength);
 
 }
 
@@ -106,7 +109,6 @@ void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,
 		{
 			if(fileArray[i] == file)
 			{
-
 				j = fileArray[i-1];
 				k = user;
 				matrixArray[j][k] = 1;
@@ -114,7 +116,6 @@ void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,
 			}
 		}
 	}
-
 }
 
 void resetMatrix(int **matrix,int size)
@@ -128,6 +129,7 @@ void resetMatrix(int **matrix,int size)
 		}
 	}
 }
+
 void showAdjacencyMatrix(int **matrix,int size)
 {
 	int i=0; int j =0;
@@ -143,6 +145,7 @@ void showAdjacencyMatrix(int **matrix,int size)
 	}
 	printf("\n");
 }
+
 void makeUserFileStruct(struct UserFile *array,int sizeS,int *userFileArray,int sizeUFA)
 {
 	int counter = 0;
