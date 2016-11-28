@@ -16,14 +16,14 @@ int bfs(int **matrix, int size,int user, int file, struct UserFile *userFile)
 	  {
 	  	visited[i] =0 ;
 	  }
-	  struct slistEl *q, *head, *tail; // Kolejka
+	  struct slistEl *q, *head, *tail; 
 
-	  q = malloc(sizeof( struct slistEl ));        // W kolejce umieszczamy v
+	  q = malloc(sizeof( struct slistEl ));
 	  q->next = NULL;
 	  q->data = user;
 	  head = tail = q;
 
-	  visited[user] = 1;      // Wierzchołek v oznaczamy jako odwiedzony
+	  visited[user] = 1;
 
 	  while(head)
 	  {
