@@ -30,12 +30,12 @@ int bfs(int **matrix, int size,int user, int file, struct UserFile *userFile)
 	  	/** next user in bfs  **/
 	    user = head->data;
 	    length++;
- 		printf("N %d \n",user );
+ 		//printf("N %d \n",user );
   		for(i=0;i<userFile[user].fileAmount;++i)
   		{
   			if(userFile[user].files[i] == file)
   			{
-  				printf("User %d has file %d \n",user,file);
+  				//printf("User %d has file %d \n",user,file);
   				return length;
   			}
   		}

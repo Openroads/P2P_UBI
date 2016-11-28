@@ -8,5 +8,5 @@ struct UserFile
 
 
 int dfs(int **matrix, int size, int begin, int file, struct UserFile *userFile);
-void bfs(int **matrix, int size, int user, int file);
+int bfs(int **matrix, int size, int user, int file, struct UserFile *userFile);
 

@@ -92,10 +92,8 @@ int main()
 	printf("BFS path length: %d \n",bfsPathLength);
 
 	/********          DFS           **********/
-	int dfsPathLength = dfs(adjacencyMatrix, adjancencyMatrixSize, 5, 36, userFile
-	print("DFS: %d", dfsPathLength);
-
-
+	int dfsPathLength = dfs(adjacencyMatrix, adjancencyMatrixSize, 5, 36, userFile);
+	printf("DFS path length: %d \n", dfsPathLength);
 }
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int matrixSize,int userFileSize ,int connectionSize)

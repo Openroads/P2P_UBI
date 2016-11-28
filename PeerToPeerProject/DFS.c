@@ -9,7 +9,6 @@ int *visited;
 int visit(int v, int size, int **matrix, int file, struct UserFile *userFile, int counter)
 {
     visited[v] = 1;
-    printf("%d ", v);
     int k;
     for(k = 0; k < size; k++)
     {
@@ -20,7 +19,6 @@ int visit(int v, int size, int **matrix, int file, struct UserFile *userFile, in
             {
                 if(userFile[k].files[j] == file)
                 {
-                    printf("Znalazlem: V: %d -> %d ",v,  userFile[k].files[j]);
                     return counter;
                 }
             }
@@ -50,8 +48,7 @@ int dfs(int **matrix, int size, int begin, int file,  struct UserFile *userFile)
     for(i = 0; i < size; i++)
     {
         visited[i] = 0;
-        printf("Zeruje: %i\n", i);
     }
 
-    return visit(begin, size, matrix, file, userFile, 1)); 
+    return visit(begin, size, matrix, file, userFile, 1); 
 }
