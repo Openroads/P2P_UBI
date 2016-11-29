@@ -1,4 +1,3 @@
-
 struct slistEl
 {
   struct slistEl * next;

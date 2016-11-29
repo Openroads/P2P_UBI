@@ -12,7 +12,7 @@ void addToQueue(struct slistEl **head,int value, int weight)
 	    if(!*head)
 	    {
 	    	*head = q;
-	    	printf("after %p \n",*head);
+	    	//printf("after %p \n",*head);
 	    }else{
 	    /**  add to queue **/
 		   	temp = *head;
@@ -39,6 +39,7 @@ int takeFromQueue(struct slistEl **head)
 		temp=*head;
 		*head=(*head)->next;
 		free(temp);
+		return retVal;
 	}else
 	{
 		return -1;
@@ -51,7 +52,7 @@ void showQueue(struct slistEl *head)
 	temp = head;
 	while(temp)
 	{
-		printf(" %d ",temp->priority);
+		printf(" %d ",temp->data);
 		temp=temp->next;
 	}
 }

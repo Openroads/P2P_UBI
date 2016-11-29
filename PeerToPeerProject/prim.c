@@ -1,59 +1,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Algorithms.h"
+#include "PriorQueue.h"
 
-const int WEIGHT = 1;
-
-struct slistEl
-{
-  struct slistEl * next;
-  int data;
-  int priority;
-};
+const int WEIGHT_PR = 1;
 
 int prim(int **matrix, int size, int user, int file, struct UserFile *userFile)
 {
+	int length=0;
 	int i,j;
+
 	int *visited  = malloc(sizeof (int) * size);
 	for(i=0; i<size; ++i)
 	  {
 	  	visited[i] =0 ;
 	  }
 
-	struct slistEl *q, *head, *temp; 
-
-	q = malloc(sizeof( slistEl ) );
-	q->next = NULL;
-	q->data = user;
-	q->priority = WEIGHT;
-
-	head=temp=q;
+	struct slistEl *headQueue; 
+	headQueue = NULL;
+	
 	visited[user] = 1;
 
 
-	for(i=0;i<size;++i)
+	for(i=1; i < size ;++i)
 	{
-		 for(j = 0; j < size; j++)
-	      if((matrix[user][j] == 1) && !visited[i])
+		 for(j = 0; j < size; ++j)
+	      if((matrix[user][j] == 1) && !visited[j])
 	      {
-	      	q= malloc( sizeof(slistEl ) );
-	      	q->next = NULL:
-	      	q->data = j;
-	      	q->priority = WEIGHT;
-	      	/**  add to queue */
-	      	temp = head;
-	      	while(temp && q->priority > temp->priority )
-	      	{
-	      		temp = temp->next;
-	      	} 
-	      	q->next    = temp->next;
-	      	temp->next = q;
-
+	      	addToQueue(&headQueue,j,WEIGHT_PR);
 	      }
-	//  
+	      showQueue(headQueue);
+
+	    user = takeFromQueue(&headQueue);
+	    
+	    if(user >= 0)
+	    {
+		    length++;
+		    visited[user] = 1;
+		    if(user>0)
+		    for(j=0;j<userFile[user].fileAmount;++j)
+	  		{
+	  			if(userFile[user].files[j] == file)
+	  			{
+	  				printf("PRIM: User %d has file %d \n",user,file);
+	  				return length;
+	  			}
+			}
+
+	    }
 	}
-
-
-
-	return 1;
+	return -1;
 }

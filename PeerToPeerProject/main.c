@@ -98,6 +98,9 @@ int main()
 	int BFPathLength = belmanFord(adjacencyMatrix, adjancencyMatrixSize, 5, 28, userFile);
 	printf("Bellman Ford path length: %d \n",BFPathLength);
 
+	/********      		Prim         *********/
+	int primPathLength = prim(adjacencyMatrix, adjancencyMatrixSize, 5, 28, userFile);
+	printf("Prim path length: %d  \n", primPathLength);
 
 	/***************** Free memory *********************/
 	free(userFileArray);
