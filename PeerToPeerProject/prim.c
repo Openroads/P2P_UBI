@@ -29,8 +29,7 @@ int prim(int **matrix, int size, int user, int file, struct UserFile *userFile)
 	      {
 	      	addToQueue(&headQueue,j,WEIGHT_PR);
 	      }
-	      showQueue(headQueue);
-
+	    
 	    user = takeFromQueue(&headQueue);
 	    
 	    if(user >= 0)

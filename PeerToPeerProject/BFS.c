@@ -59,4 +59,5 @@ int bfs(int **matrix, int size,int user, int file, struct UserFile *userFile)
 	        visited[i] = 1;
 	      }
 	  }
+	  return -1;
 }

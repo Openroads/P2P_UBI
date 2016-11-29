@@ -28,7 +28,7 @@ int main()
 	int connectionArraySize 	= myHeader.Transactions*2;
 	int *userConnectionArray 	= malloc(sizeof(int) * connectionArraySize);
 	int endConnectLine 			= startConnectionLine+myHeader.Transactions;
-	getUserConnections(userConnectionArray, fileName,startConnectionLine,startConnectionLine+myHeader.Transactions);
+	getUserConnections(userConnectionArray, fileName,startConnectionLine,endConnectLine);
 	/************************************************************************/
 
 	/************ Making array with Users and files which user has **********/
@@ -43,7 +43,7 @@ int main()
 	printf("Transactions: %d\n", myHeader.Transactions);
 	int i =0;
 	printf("User- File array: \n");
-	for(i; i < userFileArraySize ;++i)
+	for(i=0; i < userFileArraySize ;++i)
 	{
 		if(i%2==0) printf("User: %d ",userFileArray[i] );
 		else printf("File: %d \n",userFileArray[i]);
@@ -109,6 +109,8 @@ int main()
 	for(i=0; i < adjancencyMatrixSize; ++i)
 		free(adjacencyMatrix[i]);
 	free(adjacencyMatrix);
+
+	return 0;
 }
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int matrixSize,int userFileSize ,int connectionSize)
@@ -138,7 +140,7 @@ void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,
 void resetMatrix(int **matrix,int size)
 {
 	int i=0; int j =0;
-	for(i; i < size; i++)
+	for(i=0; i < size; i++)
 	{
 		for(j=0; j < size; j++)
 		{
