@@ -4,15 +4,11 @@
 
 
 
-const int MAXINT = 2147483647;    // Największa liczba całkowita
+const int MAXINT = 2147483645;    // Największa liczba całkowita
 const int WEIGHT = 1;
 
 
 void relax(int  u,int v,int w,int *d,int *p);
-// Zmienne globalne
-int m,n;                          // Liczba krawędzi i wierzchołków w grafie
-long long * d;                    // Tablica kosztów dojścia
-int * p;                          // Tablica poprzedników
 
 int belmanFord(int **matrix, int size, int user, int file, struct UserFile *userFile)
 {
@@ -29,28 +25,45 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
   distTo[user] = 0;   
   /**********************/
 
-
-  for(i = 1; i < size; ++i)
+  for(i = 1; i < size-1; ++i)
   {
-    for(x = 0; x < size-1; x++)
+    for(x = 0; x < size; x++)
       for(j=0; j < size; ++j)
         if(matrix[x][j]==1){
         	relax(x,j,WEIGHT,distTo,predNode);
   		}
   }
-  for(x = 0; x < size; ++x)
-    for(j=0; j < size; ++j)
+  
+  for(x = 0; x < size; x++)
+   { 
+   	for(j=0; j < size; ++j)
         if(matrix[x][j]==1){
-        	if(d[j] > d[x] + WEIGHT) return -999; //negative cycle
+        	if(distTo[x] > distTo[j] + WEIGHT) return -999; //negative cycle
         }
-  	
+  	}
 
-  for(i=0 ; i< size; ++i)
+  /*for(i=0;i<size;i++)
+  printf("%d ",distTo[i]);*/
+  int shortPath =0;
+  while(1)
   {
-  	predNode[i];
-  }
-
-  return 2;
+  	for(i=0 ; i< size; ++i)
+	  {
+	  	if(distTo[i]==shortPath)
+	  		{
+	  			for(j=0;j < userFile[i].fileAmount; ++j)
+	  			{
+		  			if(userFile[i].files[j] == file)
+		  			{
+		  				printf("BELMAN FORD: User %d, has file %d \n", i,file);
+		  				return shortPath+1;
+		  			}
+	  			} 
+	  		}	  	
+	  }
+	shortPath++;
+}
+return -1;
 }
 
 void relax(int  u,int v,int w,int *d,int *p)

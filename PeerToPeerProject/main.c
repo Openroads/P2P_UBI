@@ -88,12 +88,15 @@ int main()
 	/****************          Algorithms             **********************/
 	
 	/********          BFS           **********/
-	int bfsPathLength = bfs(adjacencyMatrix,myHeader.Users,5,36,userFile);
+	int bfsPathLength = bfs(adjacencyMatrix,myHeader.Users,5,28,userFile);
 	printf("BFS path length: %d \n",bfsPathLength);
 
 	/********          DFS           **********/
-	int dfsPathLength = dfs(adjacencyMatrix, adjancencyMatrixSize, 5, 36, userFile);
+	int dfsPathLength = dfs(adjacencyMatrix, adjancencyMatrixSize, 5, 28, userFile);
 	printf("DFS path length: %d \n", dfsPathLength);
+	/********          Belman Ford   **********/
+	int BFPathLength = belmanFord(adjacencyMatrix, adjancencyMatrixSize, 5, 28, userFile);
+	printf("Bellman Ford path length: %d \n",BFPathLength);
 }
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int matrixSize,int userFileSize ,int connectionSize)
