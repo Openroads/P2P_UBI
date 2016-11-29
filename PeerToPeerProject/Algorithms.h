@@ -1,4 +1,3 @@
-#pragma once
 struct UserFile
 {
 	int user;
