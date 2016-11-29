@@ -1,20 +1,16 @@
 #include <stdio.h>
-#include <stdlib>
+#include <stdlib.h>
+#include "Algorithms.h"
 
 
 
 const int MAXINT = 2147483647;    // Największa liczba całkowita
 const int WEIGHT = 1;
 
-struct slistEl
-{
-  slistEl * next;
-  int v,w;
-};
 
+void relax(int  u,int v,int w,int *d,int *p);
 // Zmienne globalne
 int m,n;                          // Liczba krawędzi i wierzchołków w grafie
-slistEl ** A;                     // Tablica dynamiczna list sąsiedztwa
 long long * d;                    // Tablica kosztów dojścia
 int * p;                          // Tablica poprzedników
 
@@ -22,8 +18,8 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
 {
   int *distTo   = malloc(sizeof(int)*size);
   int *predNode = malloc(sizeof(int)*size);
-  int i,x;
-  slistEl * pv;
+  int i,j,x;
+  
   /***  Initialization ***/
   for(i=0; i<size; i++)
   {
@@ -40,8 +36,8 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
       for(j=0; j < size; ++j)
         if(matrix[x][j]==1){
         	relax(x,j,WEIGHT,distTo,predNode);
+  		}
   }
-
   for(x = 0; x < size; ++x)
     for(j=0; j < size; ++j)
         if(matrix[x][j]==1){
@@ -49,15 +45,15 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
         }
   	
 
-  for(i=0 ; i< size ++i)
+  for(i=0 ; i< size; ++i)
   {
   	predNode[i];
   }
 
-  return true;
+  return 2;
 }
 
-void relax(u,v,w,*d,*p)
+void relax(int  u,int v,int w,int *d,int *p)
 {
 	if(d[v] > d[u] + w)
 	{
