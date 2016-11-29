@@ -97,6 +97,15 @@ int main()
 	/********          Belman Ford   **********/
 	int BFPathLength = belmanFord(adjacencyMatrix, adjancencyMatrixSize, 5, 28, userFile);
 	printf("Bellman Ford path length: %d \n",BFPathLength);
+
+
+	/***************** Free memory *********************/
+	free(userFileArray);
+	free(userConnectionArray);
+	free(userFile);
+	for(i=0; i < adjancencyMatrixSize; ++i)
+		free(adjacencyMatrix[i]);
+	free(adjacencyMatrix);
 }
 
 void makeAdjacencyMatrix(int **matrixArray, int *connectionArray,int *fileArray,int matrixSize,int userFileSize ,int connectionSize)

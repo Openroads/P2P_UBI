@@ -38,7 +38,7 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
    { 
    	for(j=0; j < size; ++j)
         if(matrix[x][j]==1){
-        	if(distTo[x] > distTo[j] + WEIGHT) return -999; //negative cycle
+        	if(distTo[x] > distTo[j] + WEIGHT){free(distTo); free(predNode); return -999;} //negative cycle
         }
   	}
 
@@ -56,6 +56,7 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
 		  			if(userFile[i].files[j] == file)
 		  			{
 		  				printf("BELMAN FORD: User %d, has file %d \n", i,file);
+              free(distTo); free(predNode);
 		  				return shortPath+1;
 		  			}
 	  			} 
@@ -63,6 +64,7 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
 	  }
 	shortPath++;
 }
+free(distTo); free(predNode);
 return -1;
 }
 
