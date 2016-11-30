@@ -16,16 +16,18 @@ void addToQueue(struct slistEl **head,int value, int weight)
 	    }else{
 	    /**  add to queue **/
 		   	temp = *head;
-		   	while(q->priority > temp->priority )
+		   	if(q->priority <= temp->priority)
 		   	{
-		  		if(temp->next)
-		   			{
-		   				temp = temp->next;
-		   			}else{printf("abreak\n"); break;}
-		   	} 
-		   	q->next    = temp->next;
-		   	temp->next = q;		      	
-		  
+		   		q->next=temp;
+		   		*head = q;
+		   	}else{
+			   	while(temp->next && q->priority > temp->next->priority )
+			   	{
+			   		temp = temp->next;
+			   	} 
+			   	q->next    = temp->next;
+			   	temp->next = q;		      	
+		  	}
 	    }
 }
 

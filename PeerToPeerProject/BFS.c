@@ -9,14 +9,15 @@ struct slistEl
 };
 
 int bfs(int **matrix, int size,int user, int file, struct UserFile *userFile)
-{	  int length = 0;
-	  int i;
-	  int *visited  = malloc(sizeof (int) * size);
+{	  
+	int length = -1;
+	int i;
+	int *visited  = malloc(sizeof (int) * size);
 	  for(i=0; i<size; ++i)
 	  {
 	  	visited[i] =0 ;
 	  }
-	  struct slistEl *q, *head, *tail; 
+	struct slistEl *q, *head, *tail; 
 
 	  q = malloc(sizeof( struct slistEl ));
 	  q->next = NULL;

@@ -79,7 +79,9 @@ int main()
 			}
 		printf("\n");
 	}
-
+	/***** for debugging *********/
+	int START_USER =1;
+	int FILE_TO_FIND=8;
 
 	/**************Making and printing adjacency Matrix between users ****/
 	resetMatrix(adjacencyMatrix,adjancencyMatrixSize);
@@ -88,19 +90,19 @@ int main()
 	/****************          Algorithms             **********************/
 	
 	/********          BFS           **********/
-	int bfsPathLength = bfs(adjacencyMatrix,myHeader.Users,5,28,userFile);
-	printf("BFS path length: %d \n",bfsPathLength);
+	int bfsPathLength = bfs(adjacencyMatrix,myHeader.Users,START_USER,FILE_TO_FIND,userFile);
+	printf("BFS 		 path length: %d \n",bfsPathLength);
 
 	/********          DFS           **********/
-	int dfsPathLength = dfs(adjacencyMatrix, adjancencyMatrixSize, 5, 28, userFile);
-	printf("DFS path length: %d \n", dfsPathLength);
+	int dfsPathLength = dfs(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
+	printf("DFS 		 path length: %d \n", dfsPathLength);
 	/********          Belman Ford   **********/
-	int BFPathLength = belmanFord(adjacencyMatrix, adjancencyMatrixSize, 5, 28, userFile);
-	printf("Bellman Ford path length: %d \n",BFPathLength);
+	int BFPathLength = belmanFord(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
+	printf("Bellman Ford  path length: %d \n",BFPathLength);
 
 	/********      		Prim         *********/
-	int primPathLength = prim(adjacencyMatrix, adjancencyMatrixSize, 5, 28, userFile);
-	printf("Prim path length: %d  \n", primPathLength);
+	int primPathLength = prim(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
+	printf("Prim 		 path length: %d  \n", primPathLength);
 
 	/***************** Free memory *********************/
 	free(userFileArray);

@@ -7,8 +7,18 @@ const int WEIGHT_PR = 1;
 
 int prim(int **matrix, int size, int user, int file, struct UserFile *userFile)
 {
+
 	int length=0;
 	int i,j;
+
+	for(j=0;j<userFile[user].fileAmount;++j)
+	  	{
+	  		if(userFile[user].files[j] == file)
+	  		{
+	  			printf("PRIM: User %d has file %d \n",user,file);
+	  			return length;
+	  		}
+		}
 
 	int *visited  = malloc(sizeof (int) * size);
 	for(i=0; i<size; ++i)
@@ -36,6 +46,7 @@ int prim(int **matrix, int size, int user, int file, struct UserFile *userFile)
 	    {
 		    length++;
 		    visited[user] = 1;
+		    printf("loser %d \n", user);
 		    if(user>0)
 		    for(j=0;j<userFile[user].fileAmount;++j)
 	  		{
