@@ -104,6 +104,10 @@ int main()
 	int primPathLength = prim(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
 	printf("Prim 		 path length: %d  \n", primPathLength);
 
+	/********          Dijkstra           **********/
+	int dijkstraPathLength = dijkstra(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
+	printf("Dijkstra: path length: %d", dijkstraPathLength);
+
 	/***************** Free memory *********************/
 	free(userFileArray);
 	free(userConnectionArray);
@@ -113,6 +117,9 @@ int main()
 	free(adjacencyMatrix);
 
 	return 0;
+
+
+	
 
 }
 
