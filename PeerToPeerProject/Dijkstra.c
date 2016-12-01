@@ -1,16 +1,12 @@
 #include "Algorithms.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 int *path;
 int *previous;
 int *visited;
 
-int macierz[3][3] =
-{
-	0, 2, 3,
-	2, 0, 4,
-	3, 4, 0
-};
-
+/************** Initialize Function **************/
 void initialize(int size)
 {
 
@@ -32,6 +28,7 @@ void initialize(int size)
     }
 }
 
+/************** Choose minimal weight of path **************/
 int min(int size)
 {
     int mini = 1000;
@@ -52,6 +49,7 @@ int min(int size)
     return coordinate;
 }
 
+/************** Relaxation Function **************/
 void relex(int u, int v, int **matrix)
 {
     if(path[v] > path[u] + matrix[u][v])
@@ -61,23 +59,7 @@ void relex(int u, int v, int **matrix)
     }
 }
 
-void wypisz(int size)
-{
-    printf("\nPath: \n");
-    int i;
-    for(i = 0; i < size; i++)
-    {
-        printf("%4d ", path[i]);
-    }
-
-    printf("\nPrevious: \n");
-    for(i = 0; i < size; i++)
-    {
-        printf("%4d ", previous[i]);
-    }
-
-}
-
+/************** Check if client v has a file **************/
 int hasFile(int v, int file, int size, struct UserFile *userFile)
 {
     int k;
@@ -98,6 +80,7 @@ int hasFile(int v, int file, int size, struct UserFile *userFile)
     return 0;
 }
 
+/************** Check how long is a path from user to file **************/
 int checking(int size, int file, struct UserFile *userFile)
 { 
     int i = 0;
@@ -127,11 +110,11 @@ int checking(int size, int file, struct UserFile *userFile)
 
 }
 
+
+/************** Beginning Dijkstra Function **************/
 int dijkstra(int **matrix, int size, int begin, int file, struct UserFile *userFile)
 {
     initialize(size);
-
-    
     int u;
 
     path[begin] = 0;
@@ -151,10 +134,16 @@ int dijkstra(int **matrix, int size, int begin, int file, struct UserFile *userF
         }
     }
 
-    
-
-    //wypisz(size);
-
     int result = checking(size, file, userFile);
+    if(result >= 0)
+    {
+        return result;
+    }
+    else
+    {
+        printf("Cannot find that file...");
+        return result;
+    }
+    
 }
 
