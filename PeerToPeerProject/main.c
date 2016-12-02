@@ -108,6 +108,9 @@ int main()
 	int dijkstraPathLength = dijkstra(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
 	printf("Dijkstra: path length: %d", dijkstraPathLength);
 
+	/********          Kruskal          **********/
+	kruskal(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
+
 	/***************** Free memory *********************/
 	free(userFileArray);
 	free(userConnectionArray);
@@ -120,6 +123,8 @@ int main()
 
 
 	
+	
+
 
 }
 
