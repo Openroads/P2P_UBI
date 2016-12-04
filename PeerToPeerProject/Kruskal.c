@@ -18,7 +18,83 @@ int uni(int i, int j, int *parent)
 	return 0;
 }
 
-void kruskal(int **matrix, int size, int begin, int file, struct UserFile *userFile)
+int check(int begin, int file, int sizeResult, int **resultMatrix, int sizeMatrix, struct UserFile *userFile)
+{
+    if(hasFile(begin, file, sizeMatrix, userFile))
+    {
+        return 0;
+    }
+
+    int i, j;
+
+    for(i = 1; i < sizeResult; i++)
+    {
+        if(resultMatrix[0][i] == begin)
+        {
+            if(hasFile(resultMatrix[0][i], file, sizeMatrix, userFile))
+            {
+                return 0;
+            }
+            if(hasFile(resultMatrix[1][i], file, sizeMatrix, userFile))
+            {
+                return resultMatrix[2][i];
+            }
+        }
+        if(resultMatrix[1][i] == begin)
+        {
+            if(hasFile(resultMatrix[1][i], file, sizeMatrix, userFile))
+            {
+                return 0;
+            }
+            if(hasFile(resultMatrix[0][i], file, sizeMatrix, userFile))
+            {
+                return resultMatrix[2][i];
+            }
+        }
+        
+    }
+
+    int zap = 0;
+    for(i = 1; i < sizeResult - 1; i++)
+    {
+        if(resultMatrix[0][i] == begin)
+        {
+            for(j = i + 1; j < sizeResult; j++)
+            {
+                if(hasFile(resultMatrix[1][j], file, sizeMatrix, userFile))
+                {
+                    if(resultMatrix[0][j] == resultMatrix[1][i])
+                    {
+                        zap += resultMatrix[2][i];
+						zap += resultMatrix[2][j];
+
+						return zap;
+                    }
+                }
+            }
+        }
+        if(resultMatrix[1][i] == begin)
+        {
+            for(j = i + 1; j < sizeResult; j++)
+            {
+                if(hasFile(resultMatrix[0][j], file, sizeMatrix, userFile))
+                {
+                    if(resultMatrix[0][j] == resultMatrix[1][i])
+                    {
+                        zap += resultMatrix[2][i];
+						zap += resultMatrix[2][j];
+
+						return zap;
+                    }
+                }
+            }
+        }
+    }
+
+    return -1;
+}
+
+int kruskal(int **matrix, int size, int begin, int file, struct UserFile *userFile)
 {
     int i, j, k, a, b, u, v, n = size, ne = 1;
     int min;
@@ -83,7 +159,6 @@ void kruskal(int **matrix, int size, int begin, int file, struct UserFile *userF
 
         if(uni(u, v, parent))
         {
-            printf("\n%d edge (%d, %d) = %d\n", ne, a, b, min);
             resultMatrix[0][ne] = a;
             resultMatrix[1][ne] = b;
             resultMatrix[2][ne] = min;
@@ -93,17 +168,7 @@ void kruskal(int **matrix, int size, int begin, int file, struct UserFile *userF
         cost[a][b] = cost[b][a] = 999;
     }
 
-    printf("\nMinimum cost = %d\n", mincost);
-
-
-    for(i = 0; i< 3; i++)
-    {
-        for(j = 1; j<ne; j++)
-        {
-            printf("%d ", resultMatrix[i][j]);
-        }
-        printf("\n");
-
-    }
+    int result = check(begin, file, ne, resultMatrix, size, userFile);
+    return result;
 
 }

@@ -106,10 +106,11 @@ int main()
 
 	/********          Dijkstra           **********/
 	int dijkstraPathLength = dijkstra(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
-	printf("Dijkstra: path length: %d", dijkstraPathLength);
+	printf("Dijkstra: path length: %d\n", dijkstraPathLength);
 
 	/********          Kruskal          **********/
-	kruskal(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
+	int kruskalPathLength = kruskal(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
+	printf("Kruskal: path length: %d\n", kruskalPathLength);
 
 	/***************** Free memory *********************/
 	free(userFileArray);
