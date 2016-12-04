@@ -12,3 +12,4 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
 int prim(int **matrix, int size, int user, int file, struct UserFile *userFile);
 int dijkstra(int **matrix, int size, int begin, int file, struct UserFile *userFile);
 int kruskal(int **matrix, int size, int begin, int file, struct UserFile *userFile);
+void floydMarshall(int **matrix, int size, int begin, int file, struct UserFile *userFile);

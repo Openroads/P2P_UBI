@@ -112,6 +112,9 @@ int main()
 	int kruskalPathLength = kruskal(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
 	printf("Kruskal: path length: %d\n", kruskalPathLength);
 
+	/********          Floyd Marshall          **********/
+	floydMarshall(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
+	
 	/***************** Free memory *********************/
 	free(userFileArray);
 	free(userConnectionArray);
@@ -121,10 +124,6 @@ int main()
 	free(adjacencyMatrix);
 
 	return 0;
-
-
-	
-	
 
 
 }
