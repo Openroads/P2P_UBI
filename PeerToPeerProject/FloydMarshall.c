@@ -3,40 +3,8 @@
 #include <stdio.h>
 #define INF 2147483647
 
+
 int **d, **p;
-int n, m;
-
-
-void show(int **matrix, int size)
-{
-    int i, j;
-
-    for(i = 0; i < size; i++)
-    {
-        for(j = 0; j < size; j++)
-        {
-            printf("%d ", matrix[i][j]);
-        }
-        printf("\n");
-    }
-}
-
-void fWPath(int i, int j)
-{
-    if(i == j)
-    {
-        printf("%d ", i);
-    }
-    else if(p[i][j] == -1)
-    {
-        printf("No path\n");
-    } 
-    else
-    {
-        fWPath(i, p[i][j]);
-        printf("%d ", j);
-    }
-}
 
 void initialization(int **matrix, int size)
 {
@@ -68,57 +36,52 @@ void initialization(int **matrix, int size)
                 d[i][j] = matrix[i][j];
             }
             
-            p[i][j] = -1;
+            p[i][j] = 0;
         }
     }
 }
 
-int floydM(int size)
+void FloydWasrhall(int size)
 {
-    int i, j, k, w;
+    int k, i, j;
+	for(k = 0; k < size; k++)
+	{
+		for(i = 0; i < size; i++)
+		{
+			for(j = 0; j < size; j++)
+			{
+				if(d[i][k] != INF && d[j][k] != INF && (d[i][k] + d[k][j] < d[i][j]))
+				{
+					d[i][j] = d[i][k] + d[k][j];
+					p[i][j] = k;
+				}
+			}
+		}
+	}
+}
 
-    for(k = 0; k < size; k++)
-    {
-        for(i = 0; i < size; i++)
+
+int floydMarshall(int **matrix, int size, int begin, int file, struct UserFile *userFile)
+{
+    int i, j;
+
+    initialization(matrix, size);
+    FloydWasrhall(size);
+
+
+  for (i = 0; i < size; i++) 
+  {
+		for (j = 0; j < size; j++) 
         {
-            for(j = 0; j < size; j++)
+            if(i == begin)
             {
-                if(d[i][k] == INF || (d[k][j] == INF)) continue;
-                w = d[i][k] + d[k][j];
-                if(d[i][j] > w)
+                if(hasFile(j, file, size, userFile))
                 {
-                    d[i][j] = w;
-                    p[i][j] = p[k][j];
+                    return d[i][j];
                 }
             }
-        }
-    }
+		}
+	}
 
-    for(i = 0; i < size; i++)
-    {
-        if(d[i][i] < 0) return 0;
-    }
-    return 1;
-}
-
-
-void floydMarshall(int **matrix, int size, int begin, int file, struct UserFile *userFile)
-{
-    initialization(matrix, size);
-    //show(d, size);
-
-    int i, j;
-    if(floydM(size))
-    {
-        for(i = 0; i < size; i++)
-        {
-            printf("%d - %d: ", i, j);
-            fWPath(i, j);
-            if(d[i][j] < INF) printf("$ %d\n", d[i][j]);
-        }
-    }
-    else
-    {
-        printf("Negative cycle found\n");
-    }
+    return -1;   
 }
