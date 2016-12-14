@@ -15,7 +15,7 @@ int prim(int **matrix, int size, int user, int file, struct UserFile *userFile)
 	  	{
 	  		if(userFile[user].files[j] == file)
 	  		{
-	  			printf("PRIM: User %d has file %d \n",user,file);
+	  			//printf("PRIM: User %d has file %d \n",user,file);
 	  			return length;
 	  		}
 		}
@@ -46,13 +46,12 @@ int prim(int **matrix, int size, int user, int file, struct UserFile *userFile)
 	    {
 		    length++;
 		    visited[user] = 1;
-		    printf("loser %d \n", user);
 		    if(user>0)
 		    for(j=0;j<userFile[user].fileAmount;++j)
 	  		{
 	  			if(userFile[user].files[j] == file)
 	  			{
-	  				printf("PRIM: User %d has file %d \n",user,file);
+	  				//printf("PRIM: User %d has file %d \n",user,file);
 	  				return length;
 	  			}
 			}

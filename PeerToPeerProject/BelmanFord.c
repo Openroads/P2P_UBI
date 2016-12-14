@@ -42,8 +42,6 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
         }
   	}
 
-  for(i=0;i<size;i++)
-  printf("%d ",distTo[i]);
   int shortPath =0;
   while(1)
   {
@@ -55,7 +53,7 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
 	  			{
 		  			if(userFile[i].files[j] == file)
 		  			{
-		  				printf("BELMAN FORD: User %d, has file %d \n", i,file);
+		  				//printf("BELMAN FORD: User %d, has file %d \n", i,file);
               free(distTo); free(predNode);
 		  				return shortPath;
 		  			}

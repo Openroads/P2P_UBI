@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "LoadFile.h"
 #include "Algorithms.h"
+#include <time.h>
 //#include <sys/queue.h>
 
 
@@ -82,39 +83,64 @@ int main()
 	/***** for debugging *********/
 	int START_USER =1;
 	int FILE_TO_FIND=8;
+	clock_t start;
+	clock_t stop;
+	float time;
 
 	/**************Making and printing adjacency Matrix between users ****/
 	resetMatrix(adjacencyMatrix,adjancencyMatrixSize);
 	makeAdjacencyMatrix(adjacencyMatrix,userConnectionArray,userFileArray,adjancencyMatrixSize,userFileArraySize,connectionArraySize);
 	showAdjacencyMatrix(adjacencyMatrix,adjancencyMatrixSize);
 	/****************          Algorithms             **********************/
-	
+	printf("Algorithm: 		Path length:		Time:\n");
 	/********          BFS           **********/
+	start = clock();
 	int bfsPathLength = bfs(adjacencyMatrix,myHeader.Users,START_USER,FILE_TO_FIND,userFile);
-	printf("BFS 		 path length: %d \n",bfsPathLength);
+	stop = clock();
+	time = (float)(stop - start) / CLOCKS_PER_SEC;
+	printf("BFS 				   	%d 		%f\n",bfsPathLength,time);
+
 
 	/********          DFS           **********/
+	start = clock();
 	int dfsPathLength = dfs(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
-	printf("DFS 		 path length: %d \n", dfsPathLength);
+	stop = clock();
+	time = (float)(stop - start) / CLOCKS_PER_SEC;
+	printf("DFS 				   	%d 		%f\n", dfsPathLength,time);
 	/********          Belman Ford   **********/
+	start =clock();
 	int BFPathLength = belmanFord(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
-	printf("Bellman Ford  path length: %d \n",BFPathLength);
+	stop = clock();
+	time = (float)(stop - start) / CLOCKS_PER_SEC;
+	printf("Bellman Ford  			        %d 		%f\n",BFPathLength,time);
 
 	/********      		Prim         *********/
+	start = clock();
 	int primPathLength = prim(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
-	printf("Prim 		 path length: %d  \n", primPathLength);
+	stop = clock();
+	time = (float)(stop - start) / CLOCKS_PER_SEC;
+	printf("Prim 				        %d  		%f\n", primPathLength, time);
 
 	/********          Dijkstra           **********/
-	int dijkstraPathLength = dijkstra(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
-	printf("Dijkstra: path length: %d\n", dijkstraPathLength);
+	start = clock();
+	int dijkstraPathLength = dijkstra(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
+	stop = clock();
+	time = (float)(stop - start) / CLOCKS_PER_SEC;
+	printf("Dijkstra  			        %d 		%f\n", dijkstraPathLength, time);
 
 	/********          Kruskal          **********/
-	int kruskalPathLength = kruskal(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
-	printf("Kruskal: path length: %d\n", kruskalPathLength);
+	start = clock();
+	int kruskalPathLength = kruskal(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
+	stop = clock();
+	time = (float)(stop - start) / CLOCKS_PER_SEC;
+	printf("Kruskal  			        %d 		%f\n", kruskalPathLength, time);
 
 	/********          Floyd Marshall          **********/
-	int floydPath = floydMarshall(adjacencyMatrix, adjancencyMatrixSize, 0, 16, userFile);
-	printf("Floyd Warshall: path lenght: %d\n", floydPath);
+	start = clock();
+	int floydPath = floydWarshall(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
+	stop = clock();
+	time = (float)(stop - start) / CLOCKS_PER_SEC;
+	printf("Floyd Warshall  		        %d 		%f\n", floydPath, time);
 	
 	/***************** Free memory *********************/
 	free(userFileArray);

@@ -36,7 +36,7 @@ int bfs(int **matrix, int size,int user, int file, struct UserFile *userFile)
   		{
   			if(userFile[user].files[i] == file)
   			{
-  				printf("BFS: User %d has file %d \n",user,file);
+  				//printf("BFS: User %d has file %d \n",user,file);
   				free(visited);
   				return length;
   			}

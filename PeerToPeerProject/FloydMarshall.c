@@ -61,7 +61,7 @@ void FloydWasrhall(int size)
 }
 
 
-int floydMarshall(int **matrix, int size, int begin, int file, struct UserFile *userFile)
+int floydWarshall(int **matrix, int size, int begin, int file, struct UserFile *userFile)
 {
     int i, j;
 

@@ -96,7 +96,7 @@ int check(int begin, int file, int sizeResult, int **resultMatrix, int sizeMatri
 
 int kruskal(int **matrix, int size, int begin, int file, struct UserFile *userFile)
 {
-    int i, j, k, a, b, u, v, n = size, ne = 1;
+    int i, j, a, b, u, v, n = size, ne = 1;
     int min;
     int mincost = 0;
     int **cost;
