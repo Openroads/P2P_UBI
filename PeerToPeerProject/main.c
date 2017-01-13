@@ -81,8 +81,8 @@ int main()
 		printf("\n");
 	}
 	/***** for debugging *********/
-	int START_USER =1;
-	int FILE_TO_FIND=8;
+	int START_USER =4;
+	int FILE_TO_FIND=19;
 	clock_t start;
 	clock_t stop;
 	float time;
@@ -135,13 +135,20 @@ int main()
 	time = (float)(stop - start) / CLOCKS_PER_SEC;
 	printf("Kruskal  			        %d 		%f\n", kruskalPathLength, time);
 
-	/********          Floyd Marshall          **********/
+	/********          Floyd Warshall          **********/
 	start = clock();
 	int floydPath = floydWarshall(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
 	stop = clock();
 	time = (float)(stop - start) / CLOCKS_PER_SEC;
 	printf("Floyd Warshall  		        %d 		%f\n", floydPath, time);
 	
+	/********          A star          **********/
+	start = clock();
+	int astarPath = astar(adjacencyMatrix, adjancencyMatrixSize, START_USER, FILE_TO_FIND, userFile);
+	stop = clock();
+	time = (float)(stop - start) / CLOCKS_PER_SEC;
+	printf("A star  		       		%d 		%f\n", astarPath, time);
+
 	/***************** Free memory *********************/
 	free(userFileArray);
 	free(userConnectionArray);

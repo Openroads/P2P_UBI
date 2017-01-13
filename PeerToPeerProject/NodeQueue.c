@@ -1,7 +1,8 @@
-#include "PriorQueue.h"
+#include "NodeQueue.h"
 #include <stdio.h>
 #include <stdlib.h>
-void addToQueue(struct slistEl **head,int value, int weight)
+
+void addNodeToQueue(struct slistEl **head,struct Node *value, int weight)
 {
 	struct slistEl *q, *temp;
 		q= malloc( sizeof(struct slistEl ) );
@@ -31,9 +32,9 @@ void addToQueue(struct slistEl **head,int value, int weight)
 	    }
 }
 
-int takeFromQueue(struct slistEl **head)
+struct Node* takeNodeFromQueue(struct slistEl **head)
 {
-	int retVal=0;
+	struct Node *retVal = NULL;
 	struct slistEl  *temp;
 	if(*head)
 	{
@@ -44,35 +45,35 @@ int takeFromQueue(struct slistEl **head)
 		return retVal;
 	}else
 	{
-		return -1;
+		return retVal;
 	}
 }
 
-void showQueue(struct slistEl *head)
+void showNodeQueue(struct slistEl *head)
 {
 	struct slistEl  *temp; 
 	temp = head;
 	while(temp)
 	{
-		printf(" %d ",temp->data);
+		printf(" %d ",temp->data->user);
 		temp=temp->next;
 	}
 }
 
-int isEmpty(struct slistEl *head)
+int isEmptyNodeQueue(struct slistEl *head)
 {
 	if(!head) return 1;
 	else return 0;
 }
 
-int isInQueue(struct slistEl *head,int value)
+int isNodeInQueue(struct slistEl *head,struct Node *value)
 {
 	struct slistEl  *temp; 
 
 	temp = head;
 	while(temp)
 	{
-		if(temp->data == value) return 1;
+		if(temp->data->user == value->user) return 1;
 		temp=temp->next;
 	}
 
