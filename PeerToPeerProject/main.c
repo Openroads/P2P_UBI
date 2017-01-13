@@ -14,7 +14,7 @@ void makeUserFileStruct(struct UserFile *array,int sizeS,int *userFileArray,int 
 
 int main()
 {
-	char fileName[10]  =  "test.txt";
+	char fileName[10]  =  "data.txt";
 
 	struct MyFile myHeader;
 	myHeader = getHeader(fileName);
@@ -81,8 +81,8 @@ int main()
 		printf("\n");
 	}
 	/***** for debugging *********/
-	int START_USER =4;
-	int FILE_TO_FIND=19;
+	int START_USER =1;
+	int FILE_TO_FIND=77;
 	clock_t start;
 	clock_t stop;
 	float time;

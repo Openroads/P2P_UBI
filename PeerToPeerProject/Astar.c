@@ -13,7 +13,7 @@ int astar(int **matrix, int size, int begin, int file, struct UserFile *userFile
 	startNode->user=begin;
 	headListCL = NULL; 
 	headQueueOL = NULL;
-	//what first weight ?
+	// first weight 0 
 	startNode->f=0;
 	startNode->g=0;
 	startNode->h=0;
@@ -33,12 +33,11 @@ int astar(int **matrix, int size, int begin, int file, struct UserFile *userFile
 	  	{
 	  		if(userFile[theBestNext->user].files[j] == file)
 	  		{
-	  			printf("Astar: User %d has file %d \n",theBestNext->user,file);
+	  			//printf("Astar: User %d has file %d \n",theBestNext->user,file);
 	  			return theBestNext->f;
 	  		}
 		}
 
-		//   where increase length ????????????
 		for(i=0; i<size; ++i)
 		{
 			if(matrix[theBestNext->user][i]==1)
