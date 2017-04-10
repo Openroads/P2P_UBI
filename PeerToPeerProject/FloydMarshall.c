@@ -8,9 +8,11 @@ int **d, **p;
 
 void initialization(int **matrix, int size)
 {
+    int i,j;
+
     d = (int**)malloc(sizeof(int*) * size);
     p = (int**)malloc(sizeof(int*) * size);
-    int i, j;
+    
     for(i = 0; i < size; i++)
     {
         d[i] = (int *)malloc(sizeof(int) * size);
@@ -64,10 +66,18 @@ void FloydWasrhall(int size)
 int floydWarshall(int **matrix, int size, int begin, int file, struct UserFile *userFile)
 {
     int i, j;
-
+    
+    for(j=0;j<userFile[begin].fileAmount;++j)
+        {
+            if(userFile[begin].files[j] == file)
+            {
+                //printf("PRIM: User %d has file %d \n",user,file);
+                return 0;
+            }
+        }
     initialization(matrix, size);
     FloydWasrhall(size);
-
+    
 
   for (i = 0; i < size; i++) 
   {

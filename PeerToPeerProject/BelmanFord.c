@@ -15,7 +15,14 @@ int belmanFord(int **matrix, int size, int user, int file, struct UserFile *user
   int *distTo   = malloc(sizeof(int)*size);
   int *predNode = malloc(sizeof(int)*size);
   int i,j,x;
-  
+  for(j=0;j<userFile[user].fileAmount;++j)
+      {
+        if(userFile[user].files[j] == file)
+        {
+          //printf("PRIM: User %d has file %d \n",user,file);
+          return 0;
+        }
+    }
   /***  Initialization ***/
   for(i=0; i<size; i++)
   {

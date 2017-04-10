@@ -58,5 +58,5 @@ int prim(int **matrix, int size, int user, int file, struct UserFile *userFile)
 
 	    }
 	}
-	return -1;
+	return 1;
 }

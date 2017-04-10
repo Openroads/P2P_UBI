@@ -14,7 +14,7 @@ void makeUserFileStruct(struct UserFile *array,int sizeS,int *userFileArray,int 
 
 int main()
 {
-	char fileName[10]  =  "data.txt";
+	char fileName[15]  =  "test.txt";
 
 	struct MyFile myHeader;
 	myHeader = getHeader(fileName);
@@ -24,7 +24,6 @@ int main()
 	int userFileArraySize  		= userFileLineAmount*2;
 	int *userFileArray     		= malloc( sizeof(int)*userFileArraySize);
 	getUserFile(userFileArray,fileName,startLineUserFile);
-
 	int startConnectionLine 	= startLineUserFile + userFileLineAmount + 1;
 	int connectionArraySize 	= myHeader.Transactions*2;
 	int *userConnectionArray 	= malloc(sizeof(int) * connectionArraySize);
@@ -69,7 +68,7 @@ int main()
 	/*********************************************************************/
 	
 	/************* Print files which each user has **********************/
-	printf("\nUser  -> files\n");
+	//printf("\nUser  -> files\n");
 	int j;
 	for(i=0 ; i < myHeader.Users;++i)
 	{
@@ -81,8 +80,8 @@ int main()
 		printf("\n");
 	}
 	/***** for debugging *********/
-	int START_USER =1;
-	int FILE_TO_FIND=77;
+	int START_USER =11;
+	int FILE_TO_FIND=12;
 	clock_t start;
 	clock_t stop;
 	float time;

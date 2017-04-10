@@ -161,17 +161,17 @@ int countLineAmount(char *filename,int startLine)
 {
 	FILE *file;
 	file = fopen(filename, "r");
-	char buff[100];
+	char buff[1000];
 	int amount =0;
 	int counter=0;
-	int n=100;
+	int n=1000;
 
 	while(counter < startLine)
 	{
 		fgets(buff,n,file);
 		counter++;
+		printf("%d\n",counter );
 	}
-
 	do{
 
 		fgets(buff,n,file);
